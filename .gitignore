@@ -1,0 +1,7 @@
+target/
+.run/
+*.log
+
+recipebook-frontend/node_modules/
+recipebook-frontend/dist/
+recipebook-frontend/.angular/

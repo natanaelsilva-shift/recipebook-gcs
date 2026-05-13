@@ -1,0 +1,55 @@
+.recipe-form {
+  display: grid;
+  gap: 20px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  padding: 24px;
+  box-shadow: 0 16px 36px rgba(23, 33, 43, 0.08);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.form-error {
+  margin: 0;
+  border-radius: 8px;
+  background: #fff1ef;
+  color: var(--danger);
+  padding: 12px 14px;
+  font-weight: 800;
+}
+
+.form-state {
+  margin: 28px 0 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 22px;
+  color: var(--muted);
+  font-weight: 800;
+  text-align: center;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+@media (max-width: 760px) {
+  .recipe-form {
+    padding: 18px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+}

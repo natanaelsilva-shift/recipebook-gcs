@@ -1,0 +1,72 @@
+<main class="page">
+  <nav class="topbar" aria-label="Navegacao principal">
+    <a class="brand" routerLink="/receitas" aria-label="RecipeBook">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>RecipeBook</span>
+    </a>
+    <a class="secondary-button" [routerLink]="cancelLink">Voltar</a>
+  </nav>
+
+  <header class="page-header">
+    <div>
+      <p class="eyebrow">{{ pageEyebrow }}</p>
+      <h1>{{ pageTitle }}</h1>
+    </div>
+  </header>
+
+  <p *ngIf="loading" class="form-state">Carregando receita...</p>
+
+  <form *ngIf="!loading" class="recipe-form" [formGroup]="form" (ngSubmit)="save()" novalidate>
+    <div class="form-grid">
+      <div class="field">
+        <label for="nome">Nome</label>
+        <input id="nome" type="text" formControlName="nome">
+        <span *ngIf="isInvalid('nome')" class="error">{{ errorFor('nome') }}</span>
+      </div>
+
+      <div class="field">
+        <label for="categoria">Categoria</label>
+        <select id="categoria" formControlName="categoria">
+          <option value="" disabled>Selecione</option>
+          <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+        </select>
+        <span *ngIf="isInvalid('categoria')" class="error">{{ errorFor('categoria') }}</span>
+      </div>
+
+      <div class="field">
+        <label for="tempoPreparo">Tempo de preparo</label>
+        <input id="tempoPreparo" type="number" min="1" formControlName="tempoPreparo">
+        <span *ngIf="isInvalid('tempoPreparo')" class="error">{{ errorFor('tempoPreparo') }}</span>
+      </div>
+
+      <div class="field">
+        <label for="porcoes">Porcoes</label>
+        <input id="porcoes" type="number" min="1" formControlName="porcoes">
+        <span *ngIf="isInvalid('porcoes')" class="error">{{ errorFor('porcoes') }}</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="ingredientes">Ingredientes</label>
+      <textarea id="ingredientes" rows="7" formControlName="ingredientes"></textarea>
+      <span *ngIf="isInvalid('ingredientes')" class="error">{{ errorFor('ingredientes') }}</span>
+    </div>
+
+    <div class="field">
+      <label for="modoPreparo">Modo de preparo</label>
+      <textarea id="modoPreparo" rows="8" formControlName="modoPreparo"></textarea>
+      <span *ngIf="isInvalid('modoPreparo')" class="error">{{ errorFor('modoPreparo') }}</span>
+    </div>
+
+    <p *ngIf="errorMessage" class="form-error">{{ errorMessage }}</p>
+
+    <div class="form-actions">
+      <a class="secondary-button" [routerLink]="cancelLink">Cancelar</a>
+      <button class="primary-button" type="submit" [disabled]="form.invalid || saving">
+        {{ saving ? 'Salvando...' : (isEditMode ? 'Salvar alteracoes' : 'Salvar') }}
+      </button>
+    </div>
+  </form>
+
+  <div *ngIf="toastMessage" class="snackbar" role="status">{{ toastMessage }}</div>
+</main>

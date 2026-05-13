@@ -1,0 +1,56 @@
+<main class="page">
+  <nav class="topbar" aria-label="Navegação principal">
+    <a class="brand" routerLink="/receitas" aria-label="RecipeBook">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>RecipeBook</span>
+    </a>
+    <a class="primary-button" routerLink="/receitas/nova">Nova receita</a>
+  </nav>
+
+  <header class="page-header">
+    <div>
+      <p class="eyebrow">Receitas culinárias</p>
+      <h1>Minhas receitas</h1>
+    </div>
+  </header>
+
+  <section class="list-toolbar" aria-label="Busca de receitas">
+    <input
+      class="search-input"
+      type="search"
+      placeholder="Buscar por nome ou categoria"
+      [formControl]="searchControl"
+      aria-label="Buscar receitas"
+    >
+  </section>
+
+  <p *ngIf="loading" class="state-message">Carregando receitas...</p>
+  <p *ngIf="errorMessage && !loading" class="state-message error">{{ errorMessage }}</p>
+
+  <p *ngIf="!loading && !errorMessage && recipes.length === 0" class="empty-state">
+    Nenhuma receita cadastrada
+  </p>
+
+  <p *ngIf="!loading && !errorMessage && recipes.length > 0 && filteredRecipes.length === 0" class="empty-state">
+    Nenhuma receita encontrada
+  </p>
+
+  <section *ngIf="!loading && !errorMessage && filteredRecipes.length > 0" class="recipe-grid" aria-label="Lista de receitas">
+    <article
+      *ngFor="let recipe of filteredRecipes"
+      class="recipe-card"
+      tabindex="0"
+      role="button"
+      [attr.aria-label]="'Abrir detalhes de ' + recipe.nome"
+      (click)="openRecipe(recipe)"
+      (keydown.enter)="openRecipe(recipe)"
+    >
+      <div class="card-topline">
+        <span class="category-badge">{{ formatCategory(recipe.categoria) }}</span>
+        <span class="time">{{ recipe.tempoPreparo }} min</span>
+      </div>
+      <h2>{{ recipe.nome }}</h2>
+      <p>{{ recipe.porcoes }} {{ recipe.porcoes === 1 ? 'porção' : 'porções' }}</p>
+    </article>
+  </section>
+</main>

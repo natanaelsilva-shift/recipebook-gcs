@@ -1,0 +1,56 @@
+<main class="page">
+  <nav class="topbar" aria-label="Navegação principal">
+    <a class="brand" routerLink="/receitas" aria-label="RecipeBook">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>RecipeBook</span>
+    </a>
+    <a class="secondary-button" routerLink="/receitas">Voltar</a>
+  </nav>
+
+  <p *ngIf="loading" class="state-message">Carregando receita...</p>
+  <p *ngIf="errorMessage && !loading" class="state-message error">{{ errorMessage }}</p>
+
+  <article *ngIf="recipe && !loading" class="detail-layout">
+    <header class="detail-header">
+      <div>
+        <p class="eyebrow">{{ formatCategory(recipe.categoria) }}</p>
+        <h1>{{ recipe.nome }}</h1>
+      </div>
+      <div class="detail-actions">
+        <a class="secondary-button" [routerLink]="['/receitas', recipe.id, 'editar']">Editar</a>
+        <button class="danger-button" type="button" [disabled]="deleting" (click)="deleteRecipe()">
+          {{ deleting ? 'Excluindo...' : 'Excluir' }}
+        </button>
+      </div>
+    </header>
+
+    <section class="facts" aria-label="Informações da receita">
+      <div>
+        <span class="fact-label">Tempo</span>
+        <strong>{{ recipe.tempoPreparo }} min</strong>
+      </div>
+      <div>
+        <span class="fact-label">Porções</span>
+        <strong>{{ recipe.porcoes }}</strong>
+      </div>
+      <div>
+        <span class="fact-label">Cadastro</span>
+        <strong>{{ recipe.dataCadastro | date:'dd/MM/yyyy HH:mm' }}</strong>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <h2>Ingredientes</h2>
+      <ul class="ingredient-list">
+        <li *ngFor="let ingredient of recipe.ingredientes">{{ ingredient }}</li>
+      </ul>
+    </section>
+
+    <section class="detail-section">
+      <h2>Modo de preparo</h2>
+      <p class="preparation">{{ recipe.modoPreparo }}</p>
+    </section>
+  </article>
+
+  <div *ngIf="toastMessage" class="snackbar" role="status">{{ toastMessage }}</div>
+</main>
