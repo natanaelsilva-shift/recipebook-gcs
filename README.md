@@ -1,55 +1,62 @@
-# RecipeBook Backend
+# RecipeBook
 
-API REST em Java 17 com Spring Boot 3.x para gestao de receitas culinarias.
+Sistema web fullstack para gestao de receitas culinarias.
 
-## Tecnologias
+## Dupla
 
-- Java 17
-- Spring Boot 3.x
-- Maven
-- Spring Web
-- Spring Data JPA
-- Bean Validation
-- H2 Database
+- Natanael Silva da Cruz
+- Nome Completo 2
 
-## Como rodar
+## Estrutura
+
+```text
+RecipeBook/
+├── backend/
+│   ├── src/
+│   ├── pom.xml
+│   └── README.md
+└── frontend/
+    ├── src/
+    ├── package.json
+    └── README.md
+```
+
+## Backend
 
 ```bash
+cd backend
 mvn spring-boot:run
 ```
 
-A API ficara disponivel em `http://localhost:8080`.
+A API roda em `http://localhost:8080`.
 
-## Endpoints
-
-- `GET /api/receitas`
-- `GET /api/receitas/{id}`
-- `POST /api/receitas`
-- `PUT /api/receitas/{id}`
-- `DELETE /api/receitas/{id}`
-
-## Banco de dados
-
-O projeto usa H2 em memoria. O console fica em:
+Console H2:
 
 ```text
 http://localhost:8080/h2-console
 ```
 
-Configuracao JDBC:
+JDBC URL:
 
 ```text
 jdbc:h2:mem:recipebook
 ```
 
-## Regras implementadas
+## Frontend
 
-- Cadastro com validacao
-- Edicao com validacao
-- Nome unico com comparacao case-insensitive
-- Listagem ordenada por receitas mais recentes
-- Busca por id com retorno `404` quando nao encontrada
-- Cadastro com retorno `201`
-- Exclusao com retorno `204`
-- Ingredientes persistidos como lista
-- CORS liberado para `http://localhost:4200`
+```bash
+cd frontend
+npm install
+ng serve
+```
+
+A aplicacao roda em `http://localhost:4200`.
+
+## Funcionalidades
+
+- Cadastro de receitas
+- Listagem em cards
+- Busca em tempo real
+- Visualizacao de detalhes
+- Edicao
+- Exclusao

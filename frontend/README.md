@@ -2,7 +2,10 @@
 
 Aplicacao Angular standalone para cadastro, listagem, busca, visualizacao, edicao e exclusao de receitas culinarias.
 
-## NATANAEL SILVA DA CRUZ
+## Dupla
+
+- Natanael Silva da Cruz
+- Nome Completo 2
 
 ## Tecnologias
 
