@@ -60,3 +60,6 @@ A aplicacao roda em `http://localhost:4200`.
 - Visualizacao de detalhes
 - Edicao
 - Exclusao
+
+
+### RF01 em desenvolvimento
